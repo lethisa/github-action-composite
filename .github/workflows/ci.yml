@@ -1,0 +1,14 @@
+name: CI Workflow
+on: [push, pull_request]
+jobs:
+  ci-job:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run My Own Composite Action
+        id: my-action
+        uses: ./
+        with:
+          who-to-greet: '@lethisa'
+      - name: Output The Answer
+        run: echo "The Answer is ${{ steps.my-action.outputs.answer }}"
